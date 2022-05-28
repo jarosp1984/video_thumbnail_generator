@@ -10,21 +10,16 @@ CVideoThumbnailGenerator::CVideoThumbnailGenerator()
 CVideoThumbnailGenerator::~CVideoThumbnailGenerator()
 {
     m_mediaPlayer.setVideoOutput(static_cast<QAbstractVideoSurface *>(nullptr));
-    StopMediaPlayerIfNeeded(true);
+    StopMediaPlayerIfNeeded();
     Q_ASSERT(m_requests.size() == 0);
     Q_ASSERT(m_finishedRequests.size() == 0);
 }
 
-void CVideoThumbnailGenerator::StopMediaPlayerIfNeeded(bool wait)
+void CVideoThumbnailGenerator::StopMediaPlayerIfNeeded()
 {
     if(m_mediaPlayer.state() != QMediaPlayer::State::StoppedState)
     {
         m_mediaPlayer.stop();
-        while(wait && m_mediaPlayer.state() != QMediaPlayer::State::StoppedState)
-        {
-            this->thread()->msleep(100);
-            QApplication::processEvents();
-        }
     }
 }
 
@@ -96,7 +91,7 @@ bool CVideoThumbnailGenerator::CarryOnProcessingRequest(SRequest* request)
     if(m_mediaPlayer.error() != QMediaPlayer::NoError)
     {
         qWarning() << "Media error: " << m_mediaPlayer.error() << ", file: " << request->m_filePath;
-        StopMediaPlayerIfNeeded(false);
+        StopMediaPlayerIfNeeded();
         request->m_requestState = ERequestState::Failed;
         return true;
     }
@@ -155,7 +150,7 @@ bool CVideoThumbnailGenerator::CancelRequest(int requestId)
             {
                 if(request->m_requestState == ERequestState::InProgress)
                 {
-                    StopMediaPlayerIfNeeded(false);
+                    StopMediaPlayerIfNeeded();
                 }
                 m_requests.removeOne(request);
                 delete request;

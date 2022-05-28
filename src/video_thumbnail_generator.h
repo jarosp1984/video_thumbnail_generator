@@ -71,7 +71,7 @@ private:
     bool CarryOnProcessingRequest(SRequest* request);
 
     //! Stop media player if needed. Can wait if wait is true.
-    void StopMediaPlayerIfNeeded(bool wait);
+    void StopMediaPlayerIfNeeded();
 
 signals:
     //! Thumbnail generation finished
