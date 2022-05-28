@@ -5,3 +5,4 @@ Uses Qt5 library. Testing using QtTest.
 Compilation tested with:
 - MS C/C++ 19.27.29110 for x64 (MSVC 2019)
 - gcc (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 8.1.0
+- gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0
