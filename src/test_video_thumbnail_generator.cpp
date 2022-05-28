@@ -13,7 +13,7 @@ private slots:
     void test_RequestThumbnail_MissingVideo();
 };
 
-constexpr const char* VIDEO_PATH = "../media/test.mp4";
+constexpr const char* VIDEO_PATH = "../media/test_short.mp4";
 
 void TestVideoThumnailGenerator::test_RequestThumbnail()
 {
