@@ -7,10 +7,13 @@ class COffscreenVideoSurface : public QAbstractVideoSurface
 {
     Q_OBJECT
 
-    QImage              m_image;                    //!< Renderd image
-    std::atomic_bool    m_frameRendered = false;    //!< Frame rendered flag
+    QImage              m_image;            //!< Renderd image
+    std::atomic_bool    m_frameRendered;    //!< Frame rendered flag
 
 public:
+    //! Constructor: clears m_frameRendered
+    COffscreenVideoSurface();
+
     //! Get image
     const QImage& GetImage() const { return m_image; }
 

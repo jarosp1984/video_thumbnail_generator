@@ -2,6 +2,11 @@
 #include <QDebug>
 #include "offscreen_video_surface.h"
 
+COffscreenVideoSurface::COffscreenVideoSurface()
+    : m_frameRendered(false)
+{
+}
+
 QList<QVideoFrame::PixelFormat> COffscreenVideoSurface::supportedPixelFormats(QAbstractVideoBuffer::HandleType type) const
 {
     return { QVideoFrame::Format_ARGB32 };
