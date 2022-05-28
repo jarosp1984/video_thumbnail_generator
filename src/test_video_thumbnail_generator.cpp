@@ -1,4 +1,5 @@
 #include <QtTest>
+#include <QFileInfo>
 #include "video_thumbnail_generator.h"
 
 class TestVideoThumnailGenerator : public QObject
@@ -13,7 +14,10 @@ private slots:
     void test_RequestThumbnail_MissingVideo();
 };
 
-constexpr const char* VIDEO_PATH = "../media/test_short.mp4";
+constexpr const char* VIDEO_PATH_RELATIVE = "../media/test_short.mp4";
+
+// absolute file path needed for GStreamer based backend
+#define VIDEO_PATH QFileInfo(VIDEO_PATH_RELATIVE).absoluteFilePath()
 
 void TestVideoThumnailGenerator::test_RequestThumbnail()
 {

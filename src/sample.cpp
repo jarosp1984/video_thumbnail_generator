@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <QThread>
 #include <QTimer>
+#include <QFileInfo>
 #include "video_thumbnail_generator.h"
 
 //! Sample application
@@ -22,7 +23,7 @@ public:
         m_generator.connect(&m_generator, &CVideoThumbnailGenerator::GenerationFinished, this, &CSampleApplication::HandleGenerationFinished);
 
         constexpr const char* VIDEO_PATH = "../media/test_short.mp4";
-        int requestId = m_generator.RequestThumbnail(VIDEO_PATH);
+        int requestId = m_generator.RequestThumbnail(QFileInfo(VIDEO_PATH).absoluteFilePath()); // absolute file path needed for GStreamer based backend
         qDebug() << "Request created, id:" << requestId;
 
         m_timer.start();
