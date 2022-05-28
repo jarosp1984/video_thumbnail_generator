@@ -57,7 +57,7 @@ public:
     //! Cancel request. Returns true if found.
     bool CancelRequest(int requestId);
 
-    //! Set thumnail size
+    //! Set thumnail size (scaling using aspect ratio)
     void SetThumnailSize(const QSize& thumbnailSize);
 
 private:

@@ -60,9 +60,9 @@ void CVideoThumbnailGenerator::UpdateRequest(SRequest* request)
         case ERequestState::InProgress:
             if( CarryOnProcessingRequest(request) )
             {
-                emit GenerationFinished(request->m_requestId, request->m_filePath, request->m_requestState == ERequestState::Suceeded);
                 m_requests.removeOne(request);
                 m_finishedRequests.push_back(request);
+                emit GenerationFinished(request->m_requestId, request->m_filePath, request->m_requestState == ERequestState::Suceeded);                
             }
             break;
 
