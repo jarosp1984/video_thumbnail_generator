@@ -51,7 +51,8 @@ void TestVideoThumnailGenerator::test_RequestThumbnail()
 
 void TestVideoThumnailGenerator::test_RequestThumbnail_MissingVideo()
 {
-    QTest::ignoreMessage(QtMsgType::QtWarningMsg, "Media error:  QMediaPlayer::ResourceError , file:  \"some_invalid_path.mp4\"");
+    QRegularExpression re("(Media error:  QMediaPlayer::)[a-zA-Z]*( , file:  \"some_invalid_path.mp4\")");
+    QTest::ignoreMessage(QtMsgType::QtWarningMsg, re);
 
     CVideoThumbnailGenerator generator;
     bool finished = false;
